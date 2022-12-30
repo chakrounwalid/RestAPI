@@ -2,10 +2,11 @@ const express = require ('express')
 const router = express.Router()
 const user = require ("../models/user")
 
+
 //create user 
 router.post("/newuser",async(req,res)=>{
     try{
-        const newUser = user(req.body)
+        const newUser = new user(req.body);
         await newUser.save()
         res.send({msg:"user added"})
     }catch (error){

@@ -3,12 +3,8 @@ const app =express()
 const mongoose =require('mongoose')
 const dotenv = require("dotenv").config({ path: "./config/.env" });
 
-mongoose.connect(process.env.MONGODB, {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true
-}).then(console.log('DataBase connected'))
-.catch((err) => console.log(err))
 
+mongoose.connect(process.env.MONGODB).then(()=>{console.log("connected to db")}).catch(()=>{console.log("error")})
 
 app.use(express.json());
 app.use("/user", require("./routes/userRoutes"));
